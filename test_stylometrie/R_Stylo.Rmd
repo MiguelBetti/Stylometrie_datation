@@ -1,0 +1,69 @@
+---
+title: "Stylométrie et datation (UniGE, 26.04.2024)"
+author: "Miguel Betti"
+Basé sur les cours de Simon Gabay (Distant reading I, UniGE, 2021-2022)
+---
+
+# Je vérifie mon dossier de travail
+
+```{r}
+getwd()
+```
+
+# J'installe la librairie Stylo
+
+```{r}
+if(!require("stylo")){
+  install.packages("stylo")
+  library(stylo)
+}
+```
+
+# Je fais une première analyse de cluster avec mon corpus
+
+Le *data clustering* ("partitionnement de données" en français) cherche à diviser un ensemble de données en différents "groupes" homogènes selon des caractéristiques qu'ils partagent. Ces groupes sont formés à partir de calculs qui déterminent leur proximité (similarité ou distance).
+
+[l'option gui=True nous donne accès à la console, mais nous pouvons le faire aussi manuellement:]
+
+1. Je charge mon corpus: corpus.dir = "nom du dossier"
+2. Je détermine:
+- la langue de travail corpus.lang = "langue choisie"
+- les données à analyser analyzed.features = mots ("w"), chaînes de caractères ("chars"), etc.
+- le nombre de mots ou caractères les plus fréquents: mfw  = "3000"
+- le type d'analyse: analysis.type = cluster ("CA"), PCA, etc., et la distance: Manhattan, Classic Delta, etc.
+- l'output
+
+On obtiendra un graphique (dendogramme), qui est accompagné de quelques informations en bas de page (`100 MFW Culled @ 0% Manhattan distance`). Le *culling est à 0%*, ce qui signifie que les mots les plus fréquents peuvent être absents de certains textes. Un culling à 100% signifierait que nous ne retiendrions que les mots les plus fréquents retenus dans **tous** les textes.
+
+Tous les labels (les noms des fichiers formant le corpus) avec la même chaîne de caractères avant l'underscore (dans notre cas, chaque auteur) ont la même, afin de simplifier la lecture des résultats.
+
+Nous pouvons essayer plusieurs distances, fréquences, etc. Selon Evert, Proisl, Jannidi, Reger, Pielström, Schöch, Vitt (2017), 5000 mots MFW avec cosine delta serait la méthode la plus efficace.
+
+```{r}
+resultats <- stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
+      analyzed.features = "w", mfw.min =3000, mfw.max = 100, mfw.incr=100,
+      analysis.type = "CA", distance.measure = "wurzburg",
+      pca.visual.flavour = "classic")
+```
+# Résultats
+
+Nous pouvons également créer un fichier avec les résultats et les consulter.
+
+Les mots sont classés du plus au moins fréquent dans le corpus. Nous pouvons voir leur fréquence par texte avec la variable `table.with.all.freqs`
+
+```{r}
+resultats
+```
+```{r}
+summary(resultats)
+```
+```{r}
+resultats$features
+```
+```{r}
+resultats$table.with.all.freqs
+```
+```{r}
+resultats$distance.table 
+```
+
