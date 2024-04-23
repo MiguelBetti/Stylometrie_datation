@@ -28,7 +28,7 @@ III. Lancer le notebook :
 
 a. Ouvrir _Jupyter Notebook_
 
-b. Chercher Stylometrie_datation/test_stylometrie/Burrows_Delta_Model.ipynb
+b. Chercher Stylometrie_datation/test_stylometrie/Python_Stylo.ipynb
 
 c. C'est parti !
 
