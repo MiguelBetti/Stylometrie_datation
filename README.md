@@ -1,6 +1,6 @@
-## Stylométrie et datation (UniGE, 26.04.2024)
+# Stylométrie et datation (UniGE, 26.04.2024)
 
-# TP Matin :
+## TP Matin :
 
 A. Mon premier test de stylométrie (R)
 
