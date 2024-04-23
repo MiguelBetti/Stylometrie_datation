@@ -78,7 +78,7 @@ Tous les labels (les noms des fichiers formant le corpus) avec la même chaîne 
 Nous pouvons essayer plusieurs distances, fréquences, etc. Commenson avec les 100 mots les plus fréquents, et une distance de Manhattan
 
 ```{r}
-resultats <- stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
+stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
       analyzed.features = "w", mfw.min =100, mfw.max = 100, mfw.incr=100,
       analysis.type = "CA", distance.measure = "manhattan",
       pca.visual.flavour = "classic")
