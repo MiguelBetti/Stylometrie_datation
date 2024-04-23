@@ -24,7 +24,7 @@ III. Lancer le notebook:
 
 a. Ouvrir R-Studio
 
-b. Chercher Stylometrie_datation/test_stylometrie/R_Stylo.Rmd
+b. File > Open file > ../Stylometrie_datation/test_stylometrie/R_Stylo.Rmd
 
 c. C'est parti !
 
