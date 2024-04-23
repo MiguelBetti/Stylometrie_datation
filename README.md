@@ -1,6 +1,6 @@
 ## Stylométrie et datation (UniGE, 26.04.2024)
 
-# TP Matin:
+# TP Matin :
 
 A. Premier test de stylométrie (R)
 
@@ -31,3 +31,9 @@ a. Ouvrir _Jupyter Notebook_
 b. Chercher Stylometrie_datation/test_stylometrie/Burrows_Delta_Model.ipynb
 
 c. C'est parti !
+
+
+# TP Après-midi :
+
+I. Installer https://gephi.org/users/download/
+
