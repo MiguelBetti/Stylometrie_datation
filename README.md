@@ -2,7 +2,23 @@
 
 # TP Matin:
 
-Premier test de stylométrie (Python)
+A. Premier test de stylométrie (R)
+
+I. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success
+
+II. Installer R-Studio
+
+III. Lancer le notebook:
+
+a. Ouvrir R-Studio
+
+b. Chercher Stylometrie_datation/test_stylometrie/R_Stylo.Rmd
+
+c. C'est parti !
+
+***
+
+B. Premier test de stylométrie (Python)
 
 I. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success
 
