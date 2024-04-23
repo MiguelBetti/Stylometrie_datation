@@ -4,7 +4,7 @@
 
 A. Mon premier test de stylométrie (R)
 
-I. Télecharger les donnnés pour le Workshop : https://github.com/MiguelBetti/Stylometrie_datation
+I. Télécharger les donnnés pour le Workshop : https://github.com/MiguelBetti/Stylometrie_datation
 
 II. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success (Anaconda 5.1)
 
