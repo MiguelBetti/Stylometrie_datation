@@ -16,14 +16,14 @@ Adolfo Bioy Casares (1914-1999)
 
 Julio Cortázar (1914-1984)
 
-Nous allons tester le Burrows' Delta sur "Las doce figuras del mundo", écrit en collaboration par ce même auteur et Adolfo Bioy Casares, mais publié sur le pseudonyme de H. Bustos Domecq.
+Nous allons faire un test avec la nouvelle "Las doce figuras del mundo", écrit en collaboration par Jorge Luis Borger et Adolfo Bioy Casares, mais publié avec le pseudonyme de H. Bustos Domecq.
 
 
 # 1. Préparation de la session de travail
 
 # 1.1. Corpus et session de travail
 
-`Stylo` a besoin de savoir où chercher les données de notre "corpus" qu'il va utiliser, et celles-ci doivent **impérativement** obéir à trois règles simples:
+`Stylo` a besoin de savoir où chercher les données du "corpus" qu'il va utiliser, et celles-ci doivent **impérativement** obéir à trois règles simples:
 
 a. Tous les textes qui forment notre corpus de travail doivent se trouver dans un dossier intitulé *corpus*.
 b. Ce dossier `corpus` ne doit contenir que les fichiers du corpus: tout autre document se retrouverait analysé avec le reste, et perturberait les résultats.
@@ -61,13 +61,13 @@ if(!require("stylo")){
 
 Le *data clustering* ("partitionnement de données" en français) cherche à diviser un ensemble de données en différents "groupes" homogènes selon des caractéristiques qu'ils partagent. Ces groupes sont formés à partir de calculs qui déterminent leur proximité (similarité ou distance).
 
-[l'option gui=True nous donne accès à la console, mais nous pouvons le faire aussi manuellement:]
+[l'option "gui=TRUE" nous donne accès à la console, mais nous pouvons le faire aussi manuellement "gui=FALSE"]
 
-1. Je charge mon corpus: corpus.dir = "nom du dossier"
+1. Je charge mon corpus: corpus.dir = "localisation du dossier"
 2. Je détermine:
 - la langue de travail corpus.lang = "langue choisie"
 - les données à analyser analyzed.features = mots ("w"), chaînes de caractères ("chars"), etc.
-- le nombre de mots ou caractères les plus fréquents: mfw  = "3000"
+- le nombre de mots ou caractères les plus fréquents: mfw.min  = "100"
 - le type d'analyse: analysis.type = cluster ("CA"), PCA, etc., et la distance: Manhattan, Classic Delta, etc.
 - l'output
 
@@ -75,7 +75,7 @@ On obtiendra un graphique (dendogramme), qui est accompagné de quelques informa
 
 Tous les labels (les noms des fichiers formant le corpus) avec la même chaîne de caractères avant l'underscore (dans notre cas, le nom chaque auteur), afin de simplifier la lecture des résultats.
 
-Nous pouvons essayer plusieurs distances, fréquences, etc.
+Nous pouvons essayer plusieurs distances, fréquences, etc. Commenson avec les 100 mots les plus fréquents, et une distance de Manhattan
 
 ```{r}
 resultats <- stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
@@ -85,9 +85,9 @@ resultats <- stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish"
 ```
 ## 2.2 Contrôler la fiabilité des résultats: répéter l'opérations avec d'autres paramètres
 
-Nous savons un premier cluster. Comment savoir s'il est fiable? Une première solution est de répéter le même clacul, en augmentant le nombre des mots les plus fréquents et en changeant la distance.
+Nous avons un premier cluster. Comment savoir s'il est fiable? Une première solution est de répéter le même clacul, en augmentant le nombre des mots les plus fréquents et en changeant la distance.
 
-Selon Evert, Proisl, Jannidi, Reger, Pielström, Schöch, Vitt (2017), 5000 mots MFW avec Delta serait la méthode la plus efficace. Nous travaillons avec des textes courts (nouvelles, contes), essayons donc 2000 et 3000 mots.
+Selon Evert, Proisl, Jannidi, Reger, Pielström, Schöch, Vitt (2017), 5000 mots MFW avec Delta serait la méthode la plus efficace. Nous travaillons avec des textes courts (nouvelles, contes), essayons donc Delta avec 2000 et 3000 mots.
 
 ```{r}
 stylo(gui=FALSE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
@@ -96,7 +96,7 @@ stylo(gui=FALSE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
       pca.visual.flavour = "classic")
 ```
 
-Les résultat est plus clair… Nous pouvons également demander à `Stylo` de répéter l'analyse de cluster un certain nombre de fois entre 100 et 1000.
+Nous pouvons également demander à `Stylo` de répéter l'analyse de cluster un certain nombre de fois entre 100 et 1000.
 
 Demandons à `Stylo` de refaire le calculs dix fois, en incrémentant de 100 à chaque fois.
 
@@ -109,22 +109,22 @@ stylo(gui=FALSE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
 
 ## 2.3 Contrôler autrement les résultats: le *consensus tree*
 
-Il est possible de représenter graphiquement la somme de ces informations: il s'agit du *concensus tree* ("arbre de consensus", en français).
+Il est possible de représenter autrement la somme de ces informations: il s'agit du *concensus tree* ("arbre de consensus", en français).
 
-C'est l'occasion de changer encore une fois la méthode de calcul de distance, pour vérifier les performances de chacune. Nous utilisions jusqu'à présent le "Delta", essayons cette fois avec une distance de Manhattan
+C'est l'occasion de changer encore une fois la méthode de calcul de distance, pour vérifier les performances de chacune.Essayons d'abord avec une distance de Manhattan
 
 ```{r}
-stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
+stylo(gui=FALSE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
       analyzed.features = "w", mfw.min = 100, mfw.max = 1000, mfw.incr=100,
       analysis.type = "BCT", consensus.strength = 0.5,  distance.measure = "manhattan",
       pca.visual.flavour = "classic")
 ```
 
 
-Et maintenant avec delta :
+Et maintenant avec Delta :
 
 ```{r}
-stylo(gui=TRUE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
+stylo(gui=FALSE, corpus.dir = "data/corpus", corpus.lang = "Spanish",
       analyzed.features = "w", mfw.min = 100, mfw.max = 1000, mfw.incr=100,
       analysis.type = "BCT", consensus.strength = 0.5,  distance.measure = "delta",
       pca.visual.flavour = "classic")
@@ -154,6 +154,7 @@ Voici la liste des mots les plus fréquents :
 ```{r}
 resultats$features
 ```
+
 Ces mots sont classés du plus au moins fréquent dans le corpus. Nous pouvons voir leur fréquence par texte avec la variable `table.with.all.freqs`
 
 
