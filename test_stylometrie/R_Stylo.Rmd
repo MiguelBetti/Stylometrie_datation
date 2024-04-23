@@ -16,7 +16,7 @@ Adolfo Bioy Casares (1914-1999)
 
 Julio Cortázar (1914-1984)
 
-Nous allons faire un test avec la nouvelle "Las doce figuras del mundo", écrit en collaboration par Jorge Luis Borges et Adolfo Bioy Casares, mais publié avec le pseudonyme de H. Bustos Domecq.
+Nous allons faire un test avec la nouvelle "Las doce figuras del mundo", écrit en collaboration par Jorge Luis Borges et Adolfo Bioy Casares, mais publiée avec le pseudonyme de H. Bustos Domecq.
 
 
 # 1. Préparation de la session de travail
