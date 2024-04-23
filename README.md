@@ -2,13 +2,15 @@
 
 # TP Matin :
 
-A. Premier test de stylométrie (R)
+A. Mon premier test de stylométrie (R)
 
-I. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success
+I. Télecharger les donnnés pour le Workshop : https://github.com/MiguelBetti/Stylometrie_datation
 
-II. Installer R-Studio
+II. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success (Anaconda 5.1)
 
-III. Lancer le notebook:
+III. Installer R-Studio
+
+IV. Lancer le notebook:
 
 a. Ouvrir R-Studio
 
@@ -18,15 +20,11 @@ c. C'est parti !
 
 ***
 
-B. Premier test de stylométrie (Python)
+B. Mon premier test de stylométrie (Python)
 
-I. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success
+I. Lancer le notebook :
 
-II. Télecharger les donnnés pour le Workshop : https://github.com/MiguelBetti/Stylometrie_datation
-
-III. Lancer le notebook :
-
-a. Ouvrir _Jupyter Notebook_
+a. Ouvrir _Jupyter Notebook_ sur Anaconda
 
 b. Chercher Stylometrie_datation/test_stylometrie/Python_Stylo.ipynb
 
