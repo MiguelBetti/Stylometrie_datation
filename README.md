@@ -24,7 +24,7 @@ III. Lancer le notebook:
 
 a. Ouvrir R-Studio
 
-b. File > Open file > ../Stylometrie_datation/test_stylometrie/R_Stylo.Rmd
+b. File > Open file > ../Stylometrie_datation/test_stylometrie/R/R_Stylo.Rmd
 
 c. C'est parti !
 
@@ -40,7 +40,7 @@ II. Lancer le notebook :
 
 a. Ouvrir _Jupyter Notebook_ sur Anaconda
 
-b. Chercher Stylometrie_datation/test_stylometrie/Python_Stylo.ipynb
+b. Chercher Stylometrie_datation/test_stylometrie/Python/Python_Stylo.ipynb
 
 c. C'est parti !
 
