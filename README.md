@@ -22,11 +22,11 @@ Gephi : https://gephi.org/users/download/
 
 III. Lancer le notebook:
 
-a. Ouvrir R-Studio
+* a. Ouvrir R-Studio
 
-b. File > Open file > ../Stylometrie_datation/test_stylometrie/R/R_Stylo.Rmd
+* b. File > Open file > ../Stylometrie_datation/test_stylometrie/R/R_Stylo.Rmd
 
-c. C'est parti !
+* c. C'est parti !
 
 ***
 
@@ -38,10 +38,10 @@ I. Installer Anaconda (Windows/Mac): https://www.anaconda.com/download/success
 
 II. Lancer le notebook :
 
-a. Ouvrir _Jupyter Notebook_ sur Anaconda
+* a. Ouvrir _Jupyter Notebook_ sur Anaconda
 
-b. Chercher Stylometrie_datation/test_stylometrie/Python/Python_Stylo.ipynb
+* b. Chercher Stylometrie_datation/test_stylometrie/Python/Python_Stylo.ipynb
 
-c. C'est parti !
+* c. C'est parti !
 
 
