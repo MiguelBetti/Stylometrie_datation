@@ -10,12 +10,7 @@ I. Télécharger les donnnés pour le Workshop : https://github.com/MiguelBetti/
 
 II. Installer R, R-Studio et Gephi
 
-R : 
-
-_Windows_ : https://cran.r-project.org/bin/windows/base
-_Mac_ : https://cran.r-project.org/bin/macosx
-
-R studio : https://rstudio.com/products/rstudio/download/#download
+R et R Studio : https://rstudio.com/products/rstudio/download/#download
 
 Gephi : https://gephi.org/users/download/
 
