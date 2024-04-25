@@ -70,13 +70,16 @@ Le *data clustering* ("partitionnement de données" en français) cherche à div
 - les données à analyser analyzed.features = mots ("w"), chaînes de caractères ("chars"), etc.
 - le nombre de mots ou caractères les plus fréquents: mfw.min  = "100"
 - le type d'analyse: analysis.type = cluster ("CA"), PCA, etc., et la distance: Manhattan, Classic Delta, etc.
-- l'output
+
+Nous avons utilisé pour ce premier exemple la distance dite "de Manhattan", mais il en existe d'autres:
+- certaines sont partagées par tous les mathématiciens (euclidienne, Canberra, *etc.*).
+- certaines sont plus spécifiques à la stylométrie (delta classic ou "distance de Burrows", cosine delta ou "distance de Würzburg", *etc.*).
 
 On obtiendra un graphique (dendogramme), qui est accompagné de quelques informations en bas de page (`100 MFW Culled @ 0% Manhattan distance`). Le *culling est à 0%*, ce qui signifie que les mots les plus fréquents peuvent être absents de certains textes. Un culling à 100% signifierait que nous ne retiendrions que les mots les plus fréquents retenus dans **tous** les textes.
 
 Tous les labels (les noms des fichiers formant le corpus) ont la même chaîne de caractères avant l'underscore (dans notre cas, le nom chaque auteur), afin de simplifier la lecture des résultats.
 
-Nous pouvons essayer plusieurs distances, fréquences, etc. Commençons avec les 100 mots les plus fréquents, et une distance de Manhattan
+Nous pouvons essayer avec plusieurs distances, fréquences, données à analyser, etc. Commençons avec les 100 mots les plus fréquents, et une distance de Manhattan
 
 ```{r}
 stylo(gui=TRUE, corpus.dir = "corpus", corpus.lang = "Spanish",
@@ -88,7 +91,7 @@ stylo(gui=TRUE, corpus.dir = "corpus", corpus.lang = "Spanish",
 
 Nous avons un premier cluster. Comment savoir s'il est fiable ? Une première solution est de répéter le même clacul, en augmentant le nombre des mots les plus fréquents et en changeant la distance.
 
-Selon Evert, Proisl, Jannidi, Reger, Pielström, Schöch, Vitt (2017), 5000 mots MFW avec Delta serait la méthode la plus efficace. Nous travaillons avec des textes courts (nouvelles, contes), essayons donc Delta avec 2000 et 3000 mots.
+Selon Evert, Proisl, Jannidi, Reger, Pielström, Schöch, Vitt (2017), 5000 mots MFW avec Classic delta serait la méthode la plus efficace. Nous travaillons avec des textes courts (nouvelles, contes), essayons donc d'abord delta avec 2000 et 3000 mots.
 
 ```{r}
 stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
@@ -97,16 +100,45 @@ stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
       pca.visual.flavour = "classic")
 ```
 
-Nous pouvons également demander à `Stylo` de répéter l'analyse de cluster un certain nombre de fois entre 100 et 1000.
-
-Demandons à `Stylo` de refaire le calculs dix fois, en incrémentant de 100 mots à chaque fois.
-
 ```{r}
 stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
-      analyzed.features = "w", mfw.min = 100, mfw.max = 1000, mfw.incr=100,
+      analyzed.features = "w", mfw.min = 3000, mfw.max = 100, mfw.incr=100,
       analysis.type = "CA", distance.measure = "delta",
       pca.visual.flavour = "classic")
 ```
+
+Et si on essayait avec 5000? Les résultats sont visiblement différents...
+
+```{r}
+stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
+      analyzed.features = "w", mfw.min = 5000, mfw.max = 100, mfw.incr=100,
+      analysis.type = "CA", distance.measure = "delta",
+      pca.visual.flavour = "classic")
+```
+
+
+Nous pouvons également demander à `Stylo` de répéter l'analyse de cluster un certain nombre de fois.
+
+Demandons à `Stylo` de refaire le calculs dix fois, en incrémentant de 500 mots à chaque fois.
+
+```{r}
+stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
+      analyzed.features = "w", mfw.min = 500, mfw.max = 5000, mfw.incr=500,
+      analysis.type = "CA", distance.measure = "delta",
+      pca.visual.flavour = "classic")
+```
+
+Nous voyons que, entre les 100 et les 3500 mots les plus fréquents, le texte de Bustos Domecq semblerait plus proche de Bioy Casares, mais, entre 3500 et 4500 mots, de Cortázar...
+
+Essayons maintenant avec différents *features* (données d'analyse). Par exemple, au lieu des 1000 mots les plus fréquents, prennons les 3-grams de caractères (sous-séquence des 3 mêmes caractères, construite à partir d'une séquence donné: "tri", "and", etc.).
+
+```{r}
+stylo(gui=TRUE, corpus.dir = "corpus", corpus.lang = "Spanish",
+      analyzed.features = "w", mfw.min = 5000, mfw.max = 100, mfw.incr=100,
+      analysis.type = "CA", distance.measure = "delta",
+      pca.visual.flavour = "classic")
+```
+
 
 ## 2.3 Contrôler autrement les résultats: le *consensus tree*
 
@@ -134,7 +166,8 @@ stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
 
 # Résultats
 
-Nous pouvons également créer un fichier avec les résultats et les consulter. Pour les stocker on crée l'objet "resultats":
+Nous pouvons également créer un fichier avec les résultats et les consulter. Pour les stocker on crée l'objet "resultats" :
+
 
 ```{r}
 resultats <- stylo(gui=FALSE, corpus.dir = "corpus", corpus.lang = "Spanish",
@@ -171,7 +204,7 @@ resultats$distance.table
 
 ## 3.1 *Principal component analysis*
 
-Un autre mode de visualisation est le *principal component analysis* ("Analyse en composantes principales" en français), qui permet lui aussi de spatialiser les résultats, selon une autre méthode de calcul :
+Un autre mode de visualisation est le *principal component analysis* ("Analyse en composantes principales" en français), qui permet lui aussi de spatialiser les résultats, selon une autre méthode de calcul. Ceci nous permet de visualiser des distances que nous ne voyons pas dans le dendogramme, par exemple: que le texte de Bustos Domecq est proche aussi des textes de Borges.
 
 
 ```{r}
